@@ -11,8 +11,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 25vmin);
-  grid-template-rows: repeat(3, 25vmin);
+  grid-template: repeat(3, 25vmin) / repeat(3, 25vmin);
   position: relative;
   max-height: 1000px;
   max-width: 1000px;
@@ -40,9 +39,8 @@ body {
   align-items: center;
 }
 
-#result {    
-  height: 5vmin;
-  font-size: 4vmin;
+#result {
+  color: white;    
   font-family: 'Montserrat', sans-serif;
   padding: 20px;
 }
@@ -59,16 +57,30 @@ body {
     color: #8B98A3;
 }
 
+.title {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-size: 72px;
+}
+
+.subtitle {
+  font-family: 'Montserrat', sans-serif;
+  color: #cb8568;
+  font-size: 22px;
+  padding-bottom: 15px;
+}
+
 .top-border {
   border-top: 1vmin solid white;
 }
 
 .hoverable:hover {
-  background-color: #b6c9d5;
+  background-color: #aeb8bf33;
 }
 
 #new-game-button {
-  background-color: rgb(66, 95, 114);
+  font-family: 'Montserrat', sans-serif;
+  background-color: #cb8568;
   color: white;
   border: none;
   padding: 15px 32px;
@@ -76,7 +88,7 @@ body {
 }
 
 #new-game-button:hover{
-  background-color: #314755;
+  background-color: #b6775d;
 }
 
 #new-game-button:focus {
@@ -95,3 +107,28 @@ body {
 .winner {
   -webkit-animation: scaling .5s infinite alternate;
 }
+
+@media all and (min-width: 736px) { 
+  #result {
+    font-size: 45px;
+    height: 45px;
+  }  
+ }
+ @media all and (max-width: 736px) { 
+  #result {
+    font-size: 35px;
+    height: 35px;
+  }  
+ }
+@media all and (max-width: 480px) { 
+  .title {
+    font-size: 50px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  #result{
+    height: 25px;
+    font-size: 25px;
+  }
+ }
