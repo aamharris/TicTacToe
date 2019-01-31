@@ -1,10 +1,6 @@
 /* Styles go here */
-body{
-  background-color: #6e93ac;
-}
-
-:root {
-  --scale: scale(1.1);
+body {
+    background-color: #3A4e62;
 }
 
 .container {
@@ -55,6 +51,14 @@ body{
   border-right: 1vmin solid white;
 }
 
+.O {
+    color: #cb8568;
+}
+
+.X {
+    color: #8B98A3;
+}
+
 .top-border {
   border-top: 1vmin solid white;
 }
@@ -91,6 +95,3 @@ body{
 .winner {
   -webkit-animation: scaling .5s infinite alternate;
 }
-
-/* o color: #ff8656fa
-   x color: #9EB6CC

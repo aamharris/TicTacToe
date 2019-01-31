@@ -15,18 +15,20 @@ var gameBoard = {};
 var winningRow = [];
 
 function playTurn() {
+    const currentSquare = this; 
     if (!isGameOver) {
-        var targetElement = event.target || event.srcElement;
-        markBoard(targetElement);
+        if (gameBoard[currentSquare.id] === undefined) {
+            markBoard(currentSquare);
 
-        if (didCurrentPlayerWin()) {
-            endGame(`${currentPlayer} wins the game!`);
-        }
-        else if (currentTurnNumber == 9) {
-            endGame("Draw!");
-        }
-        else {
-            getNextPlayer();
+            if (didCurrentPlayerWin()) {
+                endGame(`${currentPlayer} wins the game!`);
+            }
+            else if (currentTurnNumber == 9) {
+                endGame("Draw!");
+            }
+            else {
+                getNextPlayer();
+            }
         }
     }
 }
@@ -61,7 +63,7 @@ function resetGameBoard() {
     };
 
     for (var i = 0; i < grid.length; i++) {
-        grid[i].innerText = "";
+        grid[i].innerHTML = "";
     }
     winningRow = [];
 }
@@ -70,10 +72,10 @@ function getNextPlayer() {
     currentPlayer == "X" ? currentPlayer = "O" : currentPlayer = "X";
 }
 
-function markBoard(targetElement) {
-    if (gameBoard[targetElement.id] === undefined) {
-        gameBoard[targetElement.id] = currentPlayer;
-        targetElement.innerHTML = `<span id="${targetElement.id}Text">${currentPlayer}</span>`;
+function markBoard(square) {   
+    if (gameBoard[square.id] === undefined) {
+        gameBoard[square.id] = currentPlayer;
+        square.innerHTML = `<span class=${currentPlayer}>${currentPlayer}</span>`;
         currentTurnNumber += 1;
     }
 }
@@ -109,7 +111,7 @@ function hasVerticalWin() {
 
 function hasDiagonalWin() {
     if (gameBoard["A1"] === currentPlayer && gameBoard["B2"] === currentPlayer && gameBoard["C3"] === currentPlayer) {
-        winningRow = ["A1", "B2", "B3"];
+        winningRow = ["A1", "B2", "C3"];
         return true;
     } else if (gameBoard["C1"] === currentPlayer && gameBoard["B2"] === currentPlayer && gameBoard["A3"] === currentPlayer) {
         winningRow = ["C1", "B2", "A3"];
