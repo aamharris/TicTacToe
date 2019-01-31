@@ -1,0 +1,70 @@
+/* Styles go here */
+body{
+  background-color: #6e93ac;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 25vmin);
+  grid-template-rows: repeat(3, 25vmin);
+  position: relative;
+  max-height: 1000px;
+  max-width: 1000px;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  font-size: 23vmin;
+  font-family: 'Montserrat', sans-serif;
+  /* no text highlight-selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+#result {    
+  height: 5vmin;
+  font-size: 4vmin;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+}
+
+.rt-border {
+  border-right: 1vmin solid white;
+}
+
+.top-border {
+  border-top: 1vmin solid white;
+}
+
+.grid-item:hover {
+  background-color: #b6c9d5;
+}
+
+#new-game-button {
+  background-color: rgb(66, 95, 114);
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  border-radius: 2px;
+}
+
+#new-game-button:hover{
+  background-color: #314755;
+}
+
+#new-game-button:focus {
+  outline:0;
+}
