@@ -3,6 +3,10 @@ body{
   background-color: #6e93ac;
 }
 
+:root {
+  --scale: scale(1.1);
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -34,6 +38,12 @@ body{
                                     supported by Chrome and Opera */
 }
 
+.game-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #result {    
   height: 5vmin;
   font-size: 4vmin;
@@ -49,7 +59,7 @@ body{
   border-top: 1vmin solid white;
 }
 
-.grid-item:hover {
+.hoverable:hover {
   background-color: #b6c9d5;
 }
 
@@ -68,3 +78,6 @@ body{
 #new-game-button:focus {
   outline:0;
 }
+
+/* o color: #ff8656fa
+   x color: #9EB6CC

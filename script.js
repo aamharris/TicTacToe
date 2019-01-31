@@ -1,11 +1,10 @@
 //DOM Variables
 var grid = document.getElementsByClassName("grid-item");
 for (var i = 0; i < grid.length; i++) {
-    grid[i].addEventListener('click', test, false);
+    grid[i].addEventListener('click', playTurn, false);
 }
 
 var result = document.getElementById("result");
-console.log(result);
 document.getElementById("new-game-button").addEventListener("click", startNewGame); 
 
 //Game Variables
@@ -15,18 +14,16 @@ var currentTurnNumber = 0;
 var isGameOver = false; 
 var gameBoard = {};  
 
-function test() {
+function playTurn() {
   if (!isGameOver){
     var targetElement = event.target || event.srcElement;
-    makePlay(targetElement); 
+    markBoard(targetElement); 
   
     if (didCurrentPlayerWin()){
-      result.innerText = currentPlayer + " Wins the Game!"; 
-      isGameOver = true; 
+      endGame(`${currentPlayer} wins the game!`); 
     }
     else if (currentTurnNumber == 9){
-      result.innerText = "Draw!"; 
-      isGameOver = true; 
+      endGame("Draw!");       
     }
     else {
       getNextPlayer();  
@@ -34,9 +31,20 @@ function test() {
   }
 }
 
+function endGame(displayMessage){
+  result.innerText = displayMessage;
+  isGameOver = true; 
+  for (var i = 0; i < grid.length; i++) {
+    grid[i].classList.remove("hoverable");
+  }
+}
+
 function startNewGame() {
   isGameOver = false; 
   result.innerText = ""; 
+  for (var i = 0; i < grid.length; i++) {
+    grid[i].classList.add("hoverable");
+  }
   currentTurnNumber = 0; 
   resetGameBoard(); 
 }
@@ -54,15 +62,10 @@ function resetGameBoard(){
 }
 
 function getNextPlayer(){
-  if (currentPlayer == allPlayers[0]){
-    currentPlayer = allPlayers[1]; 
-  }
-  else {
-    currentPlayer = allPlayers[0]; 
-  }
+  currentPlayer == allPlayers[0] ? currentPlayer = allPlayers[1] : currentPlayer = allPlayers[0];
 }
 
-function makePlay(targetElement){
+function markBoard(targetElement){
    if (gameBoard[targetElement.id] === undefined){
      gameBoard[targetElement.id] = currentPlayer;
      targetElement.innerText = currentPlayer; 
@@ -79,8 +82,7 @@ function didCurrentPlayerWin(){
 
 function hasHorizontalWin(){
     for (var row = 1; row <= 3; row++) {
-      var firstSquare = gameBoard["A" + row]; 
-      if (firstSquare !== undefined && gameBoard["B" + row] == firstSquare && gameBoard["C" + row] == firstSquare){
+      if (gameBoard[`A${row}`] === currentPlayer && gameBoard[`B${row}`] === currentPlayer && gameBoard[`C${row}`] === currentPlayer){
         return true; 
       }
     }
@@ -89,10 +91,9 @@ function hasHorizontalWin(){
 
 function hasVerticalWin(){
     var columns = ["A", "B", "C"]; 
-    for (var colIndex = 0; colIndex <= columns.length; colIndex++) {
-      var currentColumn = columns[colIndex]
-      var firstSquare = gameBoard[currentColumn + 1]; 
-      if (firstSquare !== undefined && gameBoard[currentColumn + 2] == firstSquare && gameBoard[currentColumn + 3] == firstSquare){
+    for (var i = 0; i <= columns.length; i++) {
+      var currentColumn = columns[i]
+      if (gameBoard[`${currentColumn}1`] === currentPlayer && gameBoard[`${currentColumn}2`] === currentPlayer && gameBoard[`${currentColumn}3`] === currentPlayer){
         return true; 
       }
     }
@@ -100,8 +101,8 @@ function hasVerticalWin(){
 }
 
 function hasDiagonalWin(){
-    if (gameBoard["A1"] !== undefined && gameBoard["B2"] == gameBoard["A1"] && gameBoard["C3"] == gameBoard["A1"] ||
-        gameBoard["C1"] !== undefined && gameBoard["B2"] == gameBoard["C1"] && gameBoard["A3"] == gameBoard["C1"]){
+    if (gameBoard["A1"] === currentPlayer && gameBoard["B2"] === currentPlayer && gameBoard["C3"] === currentPlayer ||
+        gameBoard["C1"] === currentPlayer && gameBoard["B2"] === currentPlayer && gameBoard["A3"] === currentPlayer){
           return true; 
         }
     return false; 
