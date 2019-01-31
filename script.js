@@ -8,11 +8,11 @@ var result = document.getElementById("result");
 document.getElementById("new-game-button").addEventListener("click", startNewGame); 
 
 //Game Variables
-var allPlayers = ["X", "O"]; 
-var currentPlayer = allPlayers[0];
+var currentPlayer = "X";
 var currentTurnNumber = 0;
 var isGameOver = false; 
-var gameBoard = {};  
+var gameBoard = {};
+var winningRow = [];  
 
 function playTurn() {
   if (!isGameOver){
@@ -58,17 +58,18 @@ function resetGameBoard(){
               
   for (var i = 0; i < grid.length; i++) {
     grid[i].innerText = "";
-  }              
+  }
+  winningRow = [];  
 }
 
 function getNextPlayer(){
-  currentPlayer == allPlayers[0] ? currentPlayer = allPlayers[1] : currentPlayer = allPlayers[0];
+  currentPlayer == "X" ? currentPlayer = "O" : currentPlayer = "X";
 }
 
 function markBoard(targetElement){
    if (gameBoard[targetElement.id] === undefined){
      gameBoard[targetElement.id] = currentPlayer;
-     targetElement.innerText = currentPlayer; 
+     targetElement.innerHTML = `<span>${currentPlayer}</span>`; 
      currentTurnNumber += 1;
    }
 }
@@ -94,6 +95,7 @@ function hasVerticalWin(){
     for (var i = 0; i <= columns.length; i++) {
       var currentColumn = columns[i]
       if (gameBoard[`${currentColumn}1`] === currentPlayer && gameBoard[`${currentColumn}2`] === currentPlayer && gameBoard[`${currentColumn}3`] === currentPlayer){
+        winningRow.push([`${currentColumn}1`, `${currentColumn}2`, `${currentColumn}3`]); 
         return true; 
       }
     }
