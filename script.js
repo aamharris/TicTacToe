@@ -1,4 +1,5 @@
 //DOM Variables
+var isMobile = false;
 var grid = document.getElementsByClassName("grid-item");
 for (var i = 0; i < grid.length; i++) {
     grid[i].addEventListener('click', playTurn, false);
@@ -6,6 +7,13 @@ for (var i = 0; i < grid.length; i++) {
 
 var result = document.getElementById("result");
 document.getElementById("new-game-button").addEventListener("click", startNewGame);
+
+if (!!('ontouchstart' in window)) {
+    //check for touch device
+    //behaviour and events for touch device
+    isMobile = true;
+    removeHoverEffect();
+}
 
 //Game Variables
 var currentPlayer = "X";
@@ -15,7 +23,7 @@ var gameBoard = {};
 var winningRow = [];
 
 function playTurn() {
-    const currentSquare = this; 
+    const currentSquare = this;
     if (!isGameOver) {
         if (gameBoard[currentSquare.id] === undefined) {
             markBoard(currentSquare);
@@ -36,20 +44,27 @@ function playTurn() {
 function endGame(displayMessage) {
     isGameOver = true;
     result.innerText = displayMessage;
-    for (var i = 0; i < grid.length; i++) {
-        grid[i].classList.remove("hoverable");
-    }
+    removeHoverEffect();
 
     for (var i = 0; i < winningRow.length; i++) {
         document.getElementById(winningRow[i]).children[0].classList.add("winner");
     }
 }
 
+function removeHoverEffect() {
+    for (var i = 0; i < grid.length; i++) {
+        grid[i].classList.remove("hoverable");
+    }
+}
+
 function startNewGame() {
     isGameOver = false;
+    currentPlayer = "X";
     result.innerText = "";
-    for (var i = 0; i < grid.length; i++) {
-        grid[i].classList.add("hoverable");        
+    if (!isMobile) {
+        for (var i = 0; i < grid.length; i++) {
+            grid[i].classList.add("hoverable");
+        }
     }
     currentTurnNumber = 0;
     resetGameBoard();
@@ -72,7 +87,7 @@ function getNextPlayer() {
     currentPlayer == "X" ? currentPlayer = "O" : currentPlayer = "X";
 }
 
-function markBoard(square) {   
+function markBoard(square) {
     if (gameBoard[square.id] === undefined) {
         gameBoard[square.id] = currentPlayer;
         square.innerHTML = `<span class=${currentPlayer}>${currentPlayer}</span>`;
@@ -120,6 +135,3 @@ function hasDiagonalWin() {
         return false;
     }
 }
-
-
-

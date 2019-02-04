@@ -1,52 +1,51 @@
-/* Styles go here */
 body {
     background-color: #3A4e62;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .grid {
-  display: grid;
-  grid-template: repeat(3, 25vmin) / repeat(3, 25vmin);
-  position: relative;
-  max-height: 1000px;
-  max-width: 1000px;
+    display: grid;
+    grid-template: repeat(3, 20vmin) / repeat(3, 20vmin);
+    position: relative;
+    max-height: 1000px;
+    max-width: 1000px;
 }
 
 .grid-item {
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  font-size: 23vmin;
-  font-family: 'Montserrat', sans-serif;
-  /* no text highlight-selection */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18vmin;
+    font-family: 'Montserrat', sans-serif;
+    /* no text highlight-selection */
     -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
 }
 
 .game-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #result {
-  color: white;    
-  font-family: 'Montserrat', sans-serif;
-  padding: 20px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
 }
 
 .rt-border {
-  border-right: 1vmin solid white;
+    border-right: 1vmin solid white;
 }
 
 .O {
@@ -58,77 +57,82 @@ body {
 }
 
 .title {
-  font-family: 'Montserrat', sans-serif;
-  color: white;
-  font-size: 72px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 72px;
 }
 
 .subtitle {
-  font-family: 'Montserrat', sans-serif;
-  color: #cb8568;
-  font-size: 22px;
-  padding-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: #cb8568;
+    font-size: 22px;
+    padding-bottom: 15px;
 }
 
 .top-border {
-  border-top: 1vmin solid white;
+    border-top: 1vmin solid white;
 }
 
 .hoverable:hover {
-  background-color: #aeb8bf33;
+    background-color: #aeb8bf33;
 }
 
 #new-game-button {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #cb8568;
-  color: white;
-  border: none;
-  padding: 15px 32px;
-  border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #cb8568;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 2px;
 }
 
-#new-game-button:hover{
-  background-color: #b6775d;
+#new-game-button:hover {
+    background-color: #b6775d;
 }
 
 #new-game-button:focus {
-  outline:0;
+    outline: 0;
 }
 
 @-webkit-keyframes scaling {
-  From {
-      -webkit-transform: scale(1.0);
-  }
-  To {
-      -webkit-transform: scale(1.25);
-  }
+    From {
+        -webkit-transform: scale(1.0);
+    }
+
+    To {
+        -webkit-transform: scale(1.25);
+    }
 }
 
 .winner {
-  -webkit-animation: scaling .5s infinite alternate;
+    -webkit-animation: scaling .5s infinite alternate;
 }
 
-@media all and (min-width: 736px) { 
-  #result {
-    font-size: 45px;
-    height: 45px;
-  }  
- }
- @media all and (max-width: 736px) { 
-  #result {
-    font-size: 35px;
-    height: 35px;
-  }  
- }
-@media all and (max-width: 480px) { 
-  .title {
-    font-size: 50px;
-  }
-  .subtitle {
-    font-size: 16px;
-  }
-  #result{
-    height: 25px;
-    font-size: 25px;
-  }
- }
+@media all and (min-width: 736px) {
+    #result {
+        font-size: 45px;
+        height: 40px;
+    }
+}
+
+@media all and (max-width: 736px) {
+    #result {
+        font-size: 35px;
+        height: 30px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .title {
+        font-size: 50px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    #result {
+        height: 30px;
+        font-size: 25px;
+    }
+}
